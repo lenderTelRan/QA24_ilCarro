@@ -17,8 +17,12 @@ public class HelperUser extends HelperBase {
         type(By.xpath("//input[@id='password']"), password);
     }
 
-    public void submitLogin(){
+    public void submitLogin() {
         click(By.xpath("//button[@type='submit']"));
+    }
+
+    public void submitLogout() {
+        click(By.xpath("//a[text()=' Logout ']"));
     }
 
     public boolean isLogged() {
@@ -28,6 +32,12 @@ public class HelperUser extends HelperBase {
         }
         return false;
     }
-
+    public boolean notLogged() {
+        if(isElementPresent(By.xpath("//h2[text()='\"Login or Password incorrect\"']"))) {
+            click(By.xpath("//button[text()='Ok']"));
+            return true;
+        }
+        return false;
+    }
 
 }
