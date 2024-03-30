@@ -4,6 +4,9 @@ import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 public class HelperUser extends HelperBase {
     public HelperUser(WebDriver wd) {
@@ -22,10 +25,6 @@ public class HelperUser extends HelperBase {
     public void fillLoginFormWithUser(User user) {
         type(By.xpath("//input[@id='email']"), user.getEmail());
         type(By.xpath("//input[@id='password']"), user.getPassword()); // with user
-    }
-
-    public void submit() {
-        click(By.xpath("//button[@type='submit']"));
     }
 
     public void clickOk() {
@@ -53,11 +52,6 @@ public class HelperUser extends HelperBase {
         return false;
     }
 
-    public String getMessage() {
-        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
-    }
-
-
     public String getTextError() {
         return wd.findElement(By.cssSelector("div.error")).getText();
     }
@@ -65,7 +59,7 @@ public class HelperUser extends HelperBase {
     //----------registration----------
 
     public void openRegistrationForm() {
-        click(By.xpath("//button[text()=' Sign up ']"));
+        click(By.xpath("//a[text()=' Sign up ']"));
     }
 
     public void fillRegistrationForm(User user) {
@@ -76,7 +70,25 @@ public class HelperUser extends HelperBase {
     }
 
     public void checkBox() {
-        JavascriptExecutor js = (JavascriptExecutor) wd;
-        js.executeScript("document.querySelector('#terms-of-use').click()");
+        if(!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            JavascriptExecutor js = (JavascriptExecutor) wd;
+            js.executeScript("document.querySelector('#terms-of-use').click()");
+        }
+    }
+    public void checkBoxXY() {
+        if(!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use]"));
+            Actions action = new Actions(wd);
+            int width = (int) label.getRect().getWidth();
+            int xOffset = -width / 2;                                                      // sdvig vlevo
+            action.moveToElement(label, xOffset, 0).click().release().perform();    //sdvig na polovinu shirini iz centra konteinera label
+        }
+    }
+
+    public void login(User user) {
+        findLoginForm();
+        fillLoginFormWithUser(user);
+        submit();
+        clickOk();
     }
 }

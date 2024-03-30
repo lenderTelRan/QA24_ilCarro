@@ -1,6 +1,7 @@
 package manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -29,8 +30,14 @@ public class HelperBase {
         WebElement element = wd.findElement(locator);
         element.click();
         element.clear();
+        clearNew(element);
         if(text != null && !text.isEmpty())
             element.sendKeys(text);
+    }
+
+    private void clearNew(WebElement element) {     // for registrationEmptyName & registrationEmptyLastName
+        element.sendKeys("a");
+        element.sendKeys(Keys.BACK_SPACE);
     }
 
     public boolean isElementPresent(By locator){
@@ -42,5 +49,14 @@ public class HelperBase {
         //isElementPresent(By.cssSelector("button[disabled]"));
         WebElement element = wd.findElement(By.cssSelector("button['type=submit']"));
         return !element.isEnabled();
+    }
+
+    public String getMessage() {
+        //pause(2);
+        return wd.findElement(By.cssSelector(".dialog-container")).getText();
+    }
+
+    public void submit() {
+        click(By.xpath("//button[@type='submit']"));
     }
 }
