@@ -1,10 +1,10 @@
 package manager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.google.common.io.Files;
+import org.openqa.selenium.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class HelperBase {
@@ -58,5 +58,15 @@ public class HelperBase {
 
     public void submit() {
         click(By.xpath("//button[@type='submit']"));
+    }
+
+    public void getScreen(String path) {
+        TakesScreenshot screen = (TakesScreenshot) wd;
+        File temp = screen.getScreenshotAs(OutputType.FILE);
+        try {
+            Files.copy(temp, new File(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
