@@ -69,4 +69,18 @@ public class HelperBase {
             throw new RuntimeException(e);
         }
     }
+
+    public void clearTextBox(By locator) {
+        WebElement element = wd.findElement(locator);
+        String os = System.getProperty("os.name");      // OS --> Windows or Mac
+        System.out.println(os);
+
+        if(os.startsWith("Win")) {
+            element.sendKeys(Keys.CONTROL, "a");
+            element.sendKeys(Keys.DELETE);
+        } else {
+            element.sendKeys(Keys.COMMAND, "a");
+            element.sendKeys(Keys.DELETE);
+        }
+    }
 }

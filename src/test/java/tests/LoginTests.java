@@ -22,7 +22,7 @@ public class LoginTests extends TestBase {
     String wrongPassword = "123456";
 
 
-    @Test
+    @Test(priority = 1)
     public void loginFormPositive() {
 
         app.getHelperUser().findLoginForm();
@@ -34,7 +34,7 @@ public class LoginTests extends TestBase {
 //        Assert.assertTrue(app.getHelperUser().isElementPresent(By.xpath("//a[text()=' Logout ']")));
     }
 
-    @Test
+    @Test(priority = 2)
     public void loginFormPositiveWithUser() {  // test with user
 
         User user = new User()
