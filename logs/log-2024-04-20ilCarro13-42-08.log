@@ -1,0 +1,20 @@
+13:42:09.963 INFO  manager.ApplicationManager - All tests run in Chrome browser
+13:42:14.328 INFO  manager.ApplicationManager - logger started --> https://ilcarro.web.app/search
+13:42:14.348 INFO  tests.TestBase - Start of method --> loginFormWrongLogin
+13:42:19.975 INFO  manager.ApplicationManager - Error
+13:42:19.975 INFO  manager.ApplicationManager - javascript error: {"status":32,"value":"An invalid or illegal selector was specified"}
+  (Session info: chrome=123.0.6312.123)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ACTIVE-PC', ip: '192.168.109.120', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_333'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.123, chrome: {chromedriverVersion: 123.0.6312.122 (31f8248cdd9..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54002}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 617abc35fca1d32654f1be48f64725fc
+*** Element info: {Using=css selector, value=button['type=submit']}
+13:42:19.975 INFO  manager.ApplicationManager - org.openqa.selenium.JavascriptException: javascript error: {"status":32,"value":"An invalid or illegal selector was specified"}
+  (Session info: chrome=123.0.6312.123)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ACTIVE-PC', ip: '192.168.109.120', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_333'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.123, chrome: {chromedriverVersion: 123.0.6312.122 (31f8248cdd9..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54002}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 617abc35fca1d32654f1be48f64725fc
+*** Element info: {Using=css selector, value=button['type=submit']}

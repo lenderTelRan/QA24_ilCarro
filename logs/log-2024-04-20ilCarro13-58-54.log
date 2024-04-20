@@ -1,0 +1,3 @@
+13:58:56.191 INFO  manager.ApplicationManager - All tests run in Chrome browser
+13:59:01.450 INFO  manager.ApplicationManager - logger started --> https://ilcarro.web.app/search
+13:59:01.471 INFO  tests.TestBase - Start of method --> loginFormUnregisteredUser

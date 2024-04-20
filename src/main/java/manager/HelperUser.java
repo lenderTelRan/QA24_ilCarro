@@ -52,10 +52,6 @@ public class HelperUser extends HelperBase {
         return false;
     }
 
-    public String getTextError() {
-        return wd.findElement(By.cssSelector("div.error")).getText();
-    }
-
     //----------registration----------
 
     public void openRegistrationForm() {

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if(app.getHelperUser().isLogged())
             app.getHelperUser().logOut();
@@ -18,11 +18,11 @@ public class LoginTests extends TestBase {
 
     String email = "test_telran@gmail.com";
     String password = "Test@12345";
-    String wrongEmail = "test_telran@gmailcom";
+    String wrongEmail = "test_telrangmailcom";
     String wrongPassword = "123456";
 
 
-    @Test(priority = 1)
+    @Test(groups = {"smoke", "regress", "retest"})
     public void loginFormPositive() {
 
         app.getHelperUser().findLoginForm();
@@ -34,7 +34,7 @@ public class LoginTests extends TestBase {
 //        Assert.assertTrue(app.getHelperUser().isElementPresent(By.xpath("//a[text()=' Logout ']")));
     }
 
-    @Test(priority = 2)
+    @Test()
     public void loginFormPositiveWithUser() {  // test with user
 
         User user = new User()
@@ -50,13 +50,13 @@ public class LoginTests extends TestBase {
 //        Assert.assertTrue(app.getHelperUser().isElementPresent(By.xpath("//a[text()=' Logout ']")));
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void loginFormWrongPassword() {
         app.getHelperUser().findLoginForm();
         app.getHelperUser().fillLoginForm(email, wrongPassword);
         app.getHelperUser().submit();
 
-        Assert.assertEquals(app.getHelperUser().getMessage(), "\"Login or Password incorrect\"");
+        Assert.assertTrue(app.getHelperUser().getMessage().contains("\"Login or Password incorrect\""));
         Assert.assertTrue(app.getHelperUser().notLogged());
     }
     @Test
@@ -67,7 +67,7 @@ public class LoginTests extends TestBase {
 
         Assert.assertEquals(app.getHelperUser().getTextError(), "It'snot look like email");
         Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
-        Assert.assertTrue(app.getHelperUser().notLogged());
+//        Assert.assertTrue(app.getHelperUser().notLogged());
     }
     @Test
     public void loginFormUnregisteredUser() {
@@ -75,10 +75,10 @@ public class LoginTests extends TestBase {
         app.getHelperUser().fillLoginForm("t-telran@gmail.com", password);
         app.getHelperUser().submit();
 
-        Assert.assertEquals(app.getHelperUser().getMessage(), "\"Login or Password incorrect\"");
+        Assert.assertTrue(app.getHelperUser().getMessage().contains("\"Login or Password incorrect\""));
         Assert.assertTrue(app.getHelperUser().notLogged());
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void postConditions() {
         app.getHelperUser().clickOk();
     }

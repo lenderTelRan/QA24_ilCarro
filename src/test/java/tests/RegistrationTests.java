@@ -11,13 +11,13 @@ import java.util.Random;
 
 public class RegistrationTests extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if(app.getHelperUser().isLogged())
             app.getHelperUser().logOut();
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void registrationSuccess() {
         int i = new Random().nextInt(1000);
 
@@ -35,7 +35,7 @@ public class RegistrationTests extends TestBase {
         app.getHelperCar().pause(2);
         Assert.assertTrue(app.getHelperCar().getMessage().contains("You are logged in success"));
     }
-    @Test
+    @Test(groups = {"smoke"})
     public void registrationWrongEmail() {
         User user = new User()
                 .withFirstName("Piter")
@@ -112,7 +112,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().getTextError().contains("Last name is required"));
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void postConditions() {
         app.getHelperUser().clickOk();
     }

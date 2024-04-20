@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SearchCarTests extends TestBase {
-    @Test
+    @Test(groups = {"smoke"})
     public void searchCurrentMonthSuccess() {
         app.getHelperCar().searchCurrentMonth("Tel Aviv, Israel", "7/25/2024", "7/28/2024");
         app.getHelperCar().submit();
@@ -27,7 +27,15 @@ public class SearchCarTests extends TestBase {
         Assert.assertTrue(app.getHelperCar().isListOfCarsAppeared());
     }
 
-    @AfterMethod
+    @Test(groups = {"smoke"})
+    public void negativeSearch() {
+        app.getHelperCar().searchNotValidPeriod("Tel Aviv, Israel", "1/10/2024", "1/14/2024");
+        app.getHelperCar().submit();
+//        Assert.assertTrue(app.getHelperCar().isYallaButtonNotActive());
+        Assert.assertEquals(app.getHelperCar().getTextError(), "You can't pick date before today");
+    }
+
+    @AfterMethod(alwaysRun = true)
     public void postConditions() {
     app.getHelperCar().navigateByLogo();
     }

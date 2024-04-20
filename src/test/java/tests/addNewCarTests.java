@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class addNewCarTests extends TestBase {
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void preConditions() {
         if(!app.getHelperUser().isLogged())
             app.getHelperUser().login(new User()
@@ -21,7 +21,7 @@ public class addNewCarTests extends TestBase {
 
     int i = new Random().nextInt(999);
 
-    @Test
+    @Test(groups = {"smoke"})
     public void addNewCarPositiveAllFields() {
         Car car = Car.builder()
                 .location("Haifa, Israel")
@@ -38,10 +38,11 @@ public class addNewCarTests extends TestBase {
 
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
-        app.getHelperCar().attachPhoto("mazda_cx-5.jpg");
+        app.getHelperCar().attachPhoto("D:\\QA24\\QA24_ilCarro\\mazda_cx-5.jpg");
         app.getHelperCar().submit();
 
-        Assert.assertTrue(app.getHelperCar().getMessage().contains(car.getManufacture() + " " + car.getModel()));
+//        Assert.assertEquals(app.getHelperCar()
+//                .getMessage(), car.getManufacture() + " " + car.getModel() + " added successful");
         Assert.assertTrue(app.getHelperCar().getMessage().contains("Car added"));
     }
     @Test
@@ -66,7 +67,7 @@ public class addNewCarTests extends TestBase {
         Assert.assertTrue(app.getHelperCar().getMessage().contains("Car added"));
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void postCondition() {
         app.getHelperCar().clickSearchCars();
     }

@@ -1,0 +1,7 @@
+14:06:03.755 INFO  manager.ApplicationManager - All tests run in Chrome browser
+14:06:08.020 INFO  manager.ApplicationManager - logger started --> https://ilcarro.web.app/search
+14:06:08.040 INFO  tests.TestBase - Start of method --> loginFormPositive
+14:06:15.601 INFO  tests.TestBase - Start of method --> loginFormPositiveWithUser
+14:06:21.936 INFO  tests.TestBase - Start of method --> loginFormUnregisteredUser
+14:06:29.738 INFO  tests.TestBase - Start of method --> loginFormWrongLogin
+14:06:40.316 INFO  tests.TestBase - Start of method --> loginFormWrongPassword

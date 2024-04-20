@@ -46,13 +46,12 @@ public class HelperBase {
     }
 
     public boolean isYallaButtonNotActive() {
-        //isElementPresent(By.cssSelector("button[disabled]"));
-        WebElement element = wd.findElement(By.cssSelector("button['type=submit']"));
+        WebElement element = wd.findElement(By.cssSelector("button[type='submit']"));
         return !element.isEnabled();
     }
 
     public String getMessage() {
-        //pause(2);
+        pause(2);
         return wd.findElement(By.cssSelector(".dialog-container")).getText();
     }
 
@@ -60,14 +59,19 @@ public class HelperBase {
         click(By.xpath("//button[@type='submit']"));
     }
 
-    public void getScreen(String path) {
-        TakesScreenshot screen = (TakesScreenshot) wd;
-        File temp = screen.getScreenshotAs(OutputType.FILE);
+    public void getScreen(String link) {
+        TakesScreenshot takesScreenshot = (TakesScreenshot) wd;
+        File tmp = takesScreenshot.getScreenshotAs(OutputType.FILE);
         try {
-            Files.copy(temp, new File(path));
+            Files.copy(tmp, new File(link));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public String getTextError() {
+        return wd.findElement(By.cssSelector("div.error")).getText();
     }
 
     public void clearTextBox(By locator) {
